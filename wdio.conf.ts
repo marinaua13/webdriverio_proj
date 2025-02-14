@@ -20,7 +20,7 @@ export const config: WebdriverIO.Config = {
     // process simply enclose them in an array within the specs array.
     //
     // The path of the spec files will be resolved relative from the directory of
-    // of the config file unless it's absolute.
+    // of the test_data file unless it's absolute.
     //
     specs: [
         './test/specs/**/*.ts'
@@ -71,7 +71,7 @@ export const config: WebdriverIO.Config = {
     // - @wdio/mocha-framework, @wdio/jasmine-framework
     // - @wdio/local-runner
     // - @wdio/sumologic-reporter
-    // - @wdio/cli, @wdio/config, @wdio/utils
+    // - @wdio/cli, @wdio/test_data, @wdio/utils
     // Level of logging verbosity: trace | debug | info | warn | error | silent
     // logLevels: {
     //     webdriver: 'info',
@@ -147,7 +147,7 @@ export const config: WebdriverIO.Config = {
      * @param {object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-    // onPrepare: function (config, capabilities) {
+    // onPrepare: function (test_data, capabilities) {
     // },
     /**
      * Gets executed before a worker process is spawned and can be used to initialize specific service
@@ -177,7 +177,7 @@ export const config: WebdriverIO.Config = {
      * @param {Array.<String>} specs List of spec file paths that are to be run
      * @param {string} cid worker id (e.g. 0-0)
      */
-    // beforeSession: function (config, capabilities, specs, cid) {
+    // beforeSession: function (test_data, capabilities, specs, cid) {
     // },
     /**
      * Gets executed before test execution begins. At this point you can access to all global
@@ -262,7 +262,7 @@ export const config: WebdriverIO.Config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {Array.<String>} specs List of spec file paths that ran
      */
-    // afterSession: function (config, capabilities, specs) {
+    // afterSession: function (test_data, capabilities, specs) {
     // },
     /**
      * Gets executed after all workers got shut down and the process is about to exit. An error
@@ -272,7 +272,7 @@ export const config: WebdriverIO.Config = {
      * @param {Array.<Object>} capabilities list of capabilities details
      * @param {<Object>} results object containing test results
      */
-    // onComplete: function(exitCode, config, capabilities, results) {
+    // onComplete: function(exitCode, test_data, capabilities, results) {
     // },
     /**
     * Gets executed when a refresh happens.

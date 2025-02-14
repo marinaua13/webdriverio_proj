@@ -1,5 +1,5 @@
 import LoginPage from '../pageobjects/LoginPage.js';
-import {USER, BASE_URL} from '../config/constants.js';
+import {USER, BASE_URL} from '../test_data/constants.js';
 
 describe('Login Tests', () => {
     before(async () => {

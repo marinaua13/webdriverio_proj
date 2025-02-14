@@ -1,4 +1,4 @@
-import { BASE_URL } from '../config/constants.js';
+import { BASE_URL } from '../test_data/constants.js';
 
 class LoginPage {
     get usernameInput() { return $('#user-name'); }

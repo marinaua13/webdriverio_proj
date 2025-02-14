@@ -1,5 +1,5 @@
-import { USER, CHECKOUT_DATA } from '../config/constants.js';
-import { PATHS } from '../config/paths.js';
+import { USER, CHECKOUT_DATA } from '../test_data/constants.js';
+import { PATHS } from '../test_data/paths.js';
 import LoginPage from '../pageobjects/LoginPage.js';
 import InventoryPage from '../pageobjects/InventoryPage.js';
 import CartPage from '../pageobjects/CartPage.js';

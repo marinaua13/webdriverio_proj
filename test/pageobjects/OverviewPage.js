@@ -1,6 +1,6 @@
 class OverviewPage {
     get finishButton() { return $('#finish'); }
-    get totalPrice() { return $('#total_price'); } // Додай правильний селектор
+    get totalPrice() { return $('[data-test="subtotal-label"]'); }
 
     async completeOrder() {
         await this.finishButton.waitForExist({ timeout: 5000 });
@@ -9,7 +9,8 @@ class OverviewPage {
 
     async getTotalPrice() {
         await this.totalPrice.waitForExist({ timeout: 5000 });
-        return await this.totalPrice.getText();
+        const totalText = await this.totalPrice.getText();
+        return totalText.replace(/[^0-9.$]/g, '');
     }
 }
 

@@ -10,7 +10,7 @@ export const USER = {
 export const CHECKOUT_DATA = {
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
-    postalCode: faker.location.postalCode(),
+    postalCode: faker.location.zipCode(),
 };
 
 export const BASE_URL = 'https://www.saucedemo.com';

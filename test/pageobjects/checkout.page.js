@@ -5,7 +5,7 @@ class CheckoutPage {
     get continueButton() { return $('#continue'); }
 
     async fillCheckoutForm(firstName, lastName, postalCode) {
-        await this.firstNameInput.waitForExist({ timeout: 5000 });
+        await this.firstNameInput.waitForExist();
         await this.firstNameInput.setValue(firstName);
         await this.lastNameInput.setValue(lastName);
         await this.postalCodeInput.setValue(postalCode);

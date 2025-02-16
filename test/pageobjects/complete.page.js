@@ -9,7 +9,6 @@ class CompletePage {
 
     async clickBackHome() {
         await this.backHomeButton.waitForExist({
-            timeout: 5000,
             timeoutMsg: 'Button "Back Home" not show up'
         });
         await this.backHomeButton.click();
@@ -17,7 +16,6 @@ class CompletePage {
 
     async getThankYouMessage() {
         await this.thankYouMessage.waitForExist({
-            timeout: 5000,
             timeoutMsg: 'Message "Thank You" not show up'
         });
         return await this.thankYouMessage.getText();

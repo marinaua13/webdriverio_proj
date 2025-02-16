@@ -1,4 +1,4 @@
-import LoginPage from '../pageobjects/LoginPage.js';
+import LoginPage from '../pageobjects/login.page.js';
 import {USER, BASE_URL} from '../test_data/constants.js';
 
 describe('Login Tests', () => {

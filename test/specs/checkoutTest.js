@@ -1,11 +1,11 @@
 import { USER, CHECKOUT_DATA } from '../test_data/constants.js';
 import { PATHS } from '../test_data/paths.js';
-import LoginPage from '../pageobjects/LoginPage.js';
-import InventoryPage from '../pageobjects/InventoryPage.js';
-import CartPage from '../pageobjects/CartPage.js';
-import CheckoutPage from '../pageobjects/CheckoutPage.js';
-import OverviewPage from '../pageobjects/OverviewPage.js';
-import CompletePage from '../pageobjects/CompletePage.js';
+import LoginPage from '../pageobjects/login.page.js';
+import InventoryPage from '../pageobjects/inventory.page.js';
+import CartPage from '../pageobjects/cart.page.js';
+import CheckoutPage from '../pageobjects/checkout.page.js';
+import OverviewPage from '../pageobjects/overview.page.js';
+import CompletePage from '../pageobjects/complete.page.js';
 
 describe('Checkout process', () => {
     before(async () => {

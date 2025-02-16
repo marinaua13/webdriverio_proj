@@ -11,18 +11,18 @@ class LoginPage {
     }
 
     async login(username, password) {
-        await this.usernameInput.waitForExist({ timeout: 5000 });
+        await this.usernameInput.waitForExist();
         await this.usernameInput.setValue(username);
 
-        await this.passwordInput.waitForExist({ timeout: 5000 });
+        await this.passwordInput.waitForExist();
         await this.passwordInput.setValue(password);
 
-        await this.loginButton.waitForExist({ timeout: 5000 });
+        await this.loginButton.waitForExist();
         await this.loginButton.click();
 }
 
     async getErrorMessage() {
-        await this.errorMessage.waitForExist({ timeout: 5000 });
+        await this.errorMessage.waitForExist();
         return await this.errorMessage.getText();
     }
 }

@@ -1,3 +1,5 @@
+import { faker } from '@faker-js/faker';
+
 export const USER = {
     STANDARD: {
         username: 'standard_user',
@@ -6,9 +8,9 @@ export const USER = {
 };
 
 export const CHECKOUT_DATA = {
-    firstName: 'John',
-    lastName: 'Doe',
-    postalCode: '12345',
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    postalCode: faker.location.postalCode(),
 };
 
 export const BASE_URL = 'https://www.saucedemo.com';

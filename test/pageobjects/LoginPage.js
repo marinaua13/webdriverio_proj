@@ -4,20 +4,20 @@ class LoginPage {
     get usernameInput() { return $('#user-name'); }
     get passwordInput() { return $('#password'); }
     get loginButton() { return $('#login-button'); }
-    get errorMessage() { return $('.error-message-container'); }  // 🔹 Локатор для повідомлення про помилку
+    get errorMessage() { return $('.error-message-container'); }
 
     async open() {
         await browser.url(BASE_URL);
     }
 
     async login(username, password) {
-        await this.usernameInput.waitForExist({ timeout: 5000 });  // Додано очікування
+        await this.usernameInput.waitForExist({ timeout: 5000 });
         await this.usernameInput.setValue(username);
 
-        await this.passwordInput.waitForExist({ timeout: 5000 });  // Додано очікування
+        await this.passwordInput.waitForExist({ timeout: 5000 });
         await this.passwordInput.setValue(password);
 
-        await this.loginButton.waitForExist({ timeout: 5000 });   // Додано очікування
+        await this.loginButton.waitForExist({ timeout: 5000 });
         await this.loginButton.click();
 }
 

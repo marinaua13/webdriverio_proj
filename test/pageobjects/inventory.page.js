@@ -18,6 +18,7 @@ class InventoryPage {
     }
 
     async addItemToCart() {
+        await this.appLogo.waitForDisplayed();
         await this.addToCartButton.waitForExist({ timeoutMsg: 'Add to Cart button not found' });
         await this.addToCartButton.click();
     }

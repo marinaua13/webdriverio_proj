@@ -1,10 +1,17 @@
 import { BASE_URL } from '../test_data/constants.js';
 
 class InventoryPage {
-    get addToCartButton() { return $('#add-to-cart-sauce-labs-backpack'); }
+    get addToCartButton() { return $('[id*=add-to-cart]'); }
     get cartBadge() { return $('.shopping_cart_badge'); }
     get cartButton() { return $('.shopping_cart_link'); }
     get cartItemPrices() { return $$('.inventory_item_price'); }
+    get appLogo() {
+        return $('[id="header_container"]');
+    }
+
+    async waitForPageToLoad() {
+        await this.appLogo.waitForDisplayed();
+    }
 
     async open() {
         await browser.url(`${BASE_URL}/inventory.html`);

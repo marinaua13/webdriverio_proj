@@ -1,4 +1,4 @@
-import { USER, CHECKOUT_DATA } from '../test_data/constants.js';
+import { USER } from '../test_data/constants.js';
 import { PATHS } from '../test_data/paths.js';
 import LoginPage from '../pageobjects/login.page.js';
 import InventoryPage from '../pageobjects/inventory.page.js';
@@ -31,25 +31,18 @@ describe('Checkout process', () => {
     beforeEach(async () => {
         await LoginPage.open();
         await LoginPage.login(USER.STANDARD.username, USER.STANDARD.password);
-        await InventoryPage.open();
         await InventoryPage.addItemToCart();
         await InventoryPage.openCart();
         await CartPage.proceedToCheckout();
     });
 
     it('should display checkout form after clicking checkout button', async () => {
-        await browser.waitUntil(
-            async () => (await browser.getUrl()).includes(PATHS.CHECKOUT_STEP_ONE),
-            {timeoutMsg: 'Expected to be on checkout step one page'}
-        );
+        await CheckoutPage.waitForCheckoutStepOne();
     });
 
     it('should fill checkout form and go to overview', async () => {
         await CheckoutPage.proceedToOverview();
-        await browser.waitUntil(
-            async () => (await browser.getUrl()).includes(PATHS.CHECKOUT_STEP_TWO),
-            {timeoutMsg: 'Expected to be on checkout step two page'}
-        );
+        await CheckoutPage.waitForCheckoutStepTwo();
     });
 
     it('should verify total price on overview page', async () => {

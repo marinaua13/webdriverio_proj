@@ -1,4 +1,5 @@
 import { CHECKOUT_DATA } from '../test_data/constants.js';
+import {PATHS} from "../test_data/paths.js";
 
 class CheckoutPage {
     get firstNameInput() { return $('#first-name'); }
@@ -27,6 +28,19 @@ class CheckoutPage {
             CHECKOUT_DATA.firstName,
             CHECKOUT_DATA.lastName,
             CHECKOUT_DATA.postalCode
+        );
+    }
+    async waitForCheckoutStepOne() {
+        await browser.waitUntil(
+            async () => (await browser.getUrl()).includes(PATHS.CHECKOUT_STEP_ONE),
+            { timeoutMsg: 'Expected to be on checkout step one page' }
+        );
+    }
+
+    async waitForCheckoutStepTwo() {
+        await browser.waitUntil(
+            async () => (await browser.getUrl()).includes(PATHS.CHECKOUT_STEP_TWO),
+            { timeoutMsg: 'Expected to be on checkout step two page' }
         );
     }
 }

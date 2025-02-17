@@ -58,12 +58,11 @@ describe('Checkout process', () => {
         const totalPriceText = await OverviewPage.getTotalPrice();
         const expectedPriceText = await InventoryPage.getTotalAddedItemsPrice();
 
-        const extractPrice = (text) => parseFloat(text.match(/[\d.]+/)[0]);
-
-        const totalPrice = extractPrice(totalPriceText);
-        const expectedPriceValue = extractPrice(expectedPriceText);
+        const totalPrice = await OverviewPage.extractPrice(totalPriceText);
+        const expectedPriceValue = await OverviewPage.extractPrice(expectedPriceText);
 
         await expect(totalPrice).toBe(expectedPriceValue);
+
     });
 
     it('should finish checkout', async () => {

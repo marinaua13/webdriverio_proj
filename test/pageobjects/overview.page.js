@@ -12,6 +12,10 @@ class OverviewPage {
         const totalText = await this.totalPrice.getText();
         return totalText.replace(/[^0-9.$]/g, '');
     }
+
+    async extractPrice(text) {
+        return parseFloat(text.match(/[\d.]+/)[0]);
+    }
 }
 
 export default new OverviewPage();

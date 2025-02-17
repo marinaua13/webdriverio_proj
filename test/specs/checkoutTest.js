@@ -7,60 +7,53 @@ import CheckoutPage from '../pageobjects/checkout.page.js';
 import OverviewPage from '../pageobjects/overview.page.js';
 import CompletePage from '../pageobjects/complete.page.js';
 
-describe('Checkout process', () => {
+describe('Cart functionality', () => {
     beforeEach(async () => {
         await LoginPage.open();
         await LoginPage.login(USER.STANDARD.username, USER.STANDARD.password);
+        await InventoryPage.waitForPageToLoad();
+        await InventoryPage.addItemToCart();
     });
 
     it('should add a product to cart', async () => {
-        await InventoryPage.open();
-        await InventoryPage.addItemToCart();
         const cartCount = await InventoryPage.getCartCount();
         await expect(cartCount).toEqual('1');
     });
 
     it('should display the cart page with added products', async () => {
-        await InventoryPage.open();
-        await InventoryPage.addItemToCart();
         await InventoryPage.openCart();
         const cartItems = await CartPage.getCartItems();
         await expect(cartItems.length).toBeGreaterThan(0);
     });
+});
 
-    it('should display checkout form after clicking checkout button', async () => {
+describe('Checkout process', () => {
+    beforeEach(async () => {
+        await LoginPage.open();
+        await LoginPage.login(USER.STANDARD.username, USER.STANDARD.password);
         await InventoryPage.open();
         await InventoryPage.addItemToCart();
         await InventoryPage.openCart();
         await CartPage.proceedToCheckout();
+    });
+
+    it('should display checkout form after clicking checkout button', async () => {
         await browser.waitUntil(
             async () => (await browser.getUrl()).includes(PATHS.CHECKOUT_STEP_ONE),
-            { timeoutMsg: 'Expected to be on checkout step one page' }
+            {timeoutMsg: 'Expected to be on checkout step one page'}
         );
     });
 
     it('should fill checkout form and go to overview', async () => {
-        await InventoryPage.open();
-        await InventoryPage.addItemToCart();
-        await InventoryPage.openCart();
-        await CartPage.proceedToCheckout();
-        await CheckoutPage.fillCheckoutForm(
-            CHECKOUT_DATA.firstName, CHECKOUT_DATA.lastName, CHECKOUT_DATA.postalCode
-        );
+        await CheckoutPage.proceedToOverview();
         await browser.waitUntil(
             async () => (await browser.getUrl()).includes(PATHS.CHECKOUT_STEP_TWO),
-            { timeoutMsg: 'Expected to be on checkout step two page' }
+            {timeoutMsg: 'Expected to be on checkout step two page'}
         );
     });
 
     it('should verify total price on overview page', async () => {
-        await InventoryPage.open();
-        await InventoryPage.addItemToCart();
-        await InventoryPage.openCart();
-        await CartPage.proceedToCheckout();
-        await CheckoutPage.fillCheckoutForm(
-            CHECKOUT_DATA.firstName, CHECKOUT_DATA.lastName, CHECKOUT_DATA.postalCode
-        );
+        await CheckoutPage.proceedToOverview();
 
         const totalPriceText = await OverviewPage.getTotalPrice();
         const expectedPriceText = await InventoryPage.getTotalAddedItemsPrice();
@@ -74,29 +67,17 @@ describe('Checkout process', () => {
     });
 
     it('should finish checkout', async () => {
-        await InventoryPage.open();
-        await InventoryPage.addItemToCart();
-        await InventoryPage.openCart();
-        await CartPage.proceedToCheckout();
-        await CheckoutPage.fillCheckoutForm(
-            CHECKOUT_DATA.firstName, CHECKOUT_DATA.lastName, CHECKOUT_DATA.postalCode
-        );
+        await CheckoutPage.proceedToOverview();
         await OverviewPage.completeOrder();
         const thankYouMessage = await CompletePage.getThankYouMessage();
         await expect(thankYouMessage).toContain('Thank you for your order!');
     });
 
     it('should return to inventory when clicking Back Home', async () => {
-        await InventoryPage.open();
-        await InventoryPage.addItemToCart();
-        await InventoryPage.openCart();
-        await CartPage.proceedToCheckout();
-        await CheckoutPage.fillCheckoutForm(
-            CHECKOUT_DATA.firstName, CHECKOUT_DATA.lastName, CHECKOUT_DATA.postalCode
-        );
+        await CheckoutPage.proceedToOverview();
         await OverviewPage.completeOrder();
         await CompletePage.clickBackHome();
         const currentUrl = await browser.getUrl();
         await expect(currentUrl).toContain('inventory.html');
     });
-});
+})

@@ -1,3 +1,5 @@
+import { CHECKOUT_DATA } from '../test_data/constants.js';
+
 class CheckoutPage {
     get firstNameInput() { return $('#first-name'); }
     get lastNameInput() { return $('#last-name'); }
@@ -19,6 +21,14 @@ class CheckoutPage {
             postalCode: await this.postalCodeInput.getValue(),
         };
     }
+
+    async proceedToOverview() {
+        await this.fillCheckoutForm(
+            CHECKOUT_DATA.firstName,
+            CHECKOUT_DATA.lastName,
+            CHECKOUT_DATA.postalCode
+        );
+    }
 }
 
-export default new CheckoutPage();
+export default new CheckoutPage
